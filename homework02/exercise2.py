@@ -1,6 +1,5 @@
 from Bio.Seq import seq
 
-
 def main():
     dna_seq = Seq("GAACCGGGAGGTGGGAATCCGTCACATATGAGAAGGTATTTGCCCGATAA")
     stop = ["UAA", "UAG", "UGA"]

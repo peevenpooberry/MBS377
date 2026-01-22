@@ -1,3 +1,6 @@
+##By: Steven Engelbretson, sje779
+##Class: MBS377
+
 #MBS377 Homework Repo
 
 ##Directory Structure
