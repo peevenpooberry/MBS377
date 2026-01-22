@@ -2,8 +2,9 @@ from Bio.Seq import seq
 
 def main():
     dna_seq = Seq("GAACCGGGAGGTGGGAATCCGTCACATATGAGAAGGTATTTGCCCGATAA")
-    stop = ["UAA", "UAG", "UGA"]
     mrna = dna_seq.transcribe()
+    stop = ["UAA", "UAG", "UGA"]
+    
     stop_count = 0
     found_dict = {}
     for position in range(len(dna_seq) - 2):
@@ -12,8 +13,8 @@ def main():
             stop_count += 1
             found_dict[position + 1] = codon
     
-    for index in found_dict.keys():
-        print(f"At position {index} found stop codon seq {found_dict[index]}")
+    for pos in found_dict.keys():
+        print(f"At position {pos} found stop codon seq {found_dict[pos]}")
 
 if __name__ == "__main__":
     main()
