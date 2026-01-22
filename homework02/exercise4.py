@@ -8,8 +8,12 @@ def main():
     c_mean = 0
     t_mean = 0
     for sample in expression_dict.keys():
-        for elem in expression_dict[sample][C]: c_mean += elem
-        for elem in expression_dict[sample][T]: t_mean += elem
+        for elem in expression_dict[sample]["C"]: c_mean += elem
+        c_mean /= len(expression_dict[sample]["C"])
+
+        for elem in expression_dict[sample]["T"]: t_mean += elem
+        t_mean /= len(expression_dict[sample]["T"])
+        
         fold_change[sample] = c_mean/t_mean
         print(f"{sample} fold change: {fold_change[sample]}")
         if fold_change[sample] < 0.5 or fold_change[sample] > 2:

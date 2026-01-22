@@ -11,6 +11,9 @@ def main():
         if codon in stop:
             stop_count += 1
             found_dict[position + 1] = codon
+    
+    for index in found_dict.keys():
+        print(f"At position {index} found stop codon seq {found_dict[index]}")
 
 if __name__ == "__main__":
     main()

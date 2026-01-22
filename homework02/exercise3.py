@@ -8,8 +8,8 @@ def main():
             codon[1] = nuc2
             for nuc3 in nucleotides:
                 codon[2] = nuc3
-                string = str(nuc[0]) + str(nuc[1]) + str(nuc[2])
-                print(string)
+                codon_str = str(nuc[0]) + str(nuc[1]) + str(nuc[2])
+                print(codon_str)
 
 if __name__ == "__main__":
     main()
