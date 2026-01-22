@@ -7,14 +7,13 @@ def main():
     
     stop_count = 0
     found_dict = {}
-    for position in range(len(dna_seq) - 2):
-        codon = mrna_seq[position: position + 2]
+    for index in range(len(dna_seq) - 2):
+        codon = mrna_seq[index: index + 2]
         if codon in stop:
             stop_count += 1
-            found_dict[position + 1] = codon
-    
-    for pos in found_dict.keys():
-        print(f"At position {pos} found stop codon seq {found_dict[pos]}")
+            position = index + 1
+            found_dict[position] = codon
+            print(f"At position {position} found stop codon seq {found_dict[position]}")
 
 if __name__ == "__main__":
     main()
