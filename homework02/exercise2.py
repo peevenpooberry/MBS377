@@ -1,4 +1,4 @@
-from Bio.Seq import seq
+from Bio.Seq import Seq
 
 def main():
     dna_seq = Seq("GAACCGGGAGGTGGGAATCCGTCACATATGAGAAGGTATTTGCCCGATAA")
