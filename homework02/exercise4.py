@@ -17,7 +17,9 @@ def main():
         fold_change[sample] = c_mean/t_mean
         print(f"{sample} fold change: {fold_change[sample]}")
         if fold_change[sample] < 0.5 or fold_change[sample] > 2:
-            print(f"{sample} shows significant change!")
+            print(f"{sample} shows significant change!\n")
+        else:
+            print()
     
     if __name__ == "__main__":
         main()
