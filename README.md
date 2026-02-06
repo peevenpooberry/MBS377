@@ -12,3 +12,4 @@ Every week I will be making a new directory with its own README and the individu
 ## Current Contents
 + Week 2 Homework: Python Review
 + Week 3 Homework: Common Data Formats (json, xml, csv, yaml)
++ Week 4 Homework: Other Data Formats (FASTA, FASTQ, mmCIF)
