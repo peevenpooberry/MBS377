@@ -64,7 +64,6 @@ Chain D: 146 residues, 1123 atoms
 ```
 
 ## Troubleshooting and Testing
-Necessary input files for each exercise can be obtained through the following terminal code:
 Example input files for testing can be retrieved through the following Terminal code.
 + `immune_proteins.fasta`:
 ```bash
