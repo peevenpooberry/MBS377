@@ -4,6 +4,7 @@ import logging
 import socket
 import sys
 import json
+import os
 
 # -------------------------
 # Constants (configuration)
@@ -120,7 +121,7 @@ def generate_output_file(OUTPUT_FILE: str, summary: list[dict]):
     """
     logging.info(f"Writing to {OUTPUT_FILE}")
     try:
-        full_path = os.path.join(output_files, OUTPUT_FILE)
+        full_path = os.path.join("output_files", OUTPUT_FILE)
     except:
         logging.debug("Missing output directory")
         full_path = OUTPUT_FILE
