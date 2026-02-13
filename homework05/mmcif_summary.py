@@ -9,8 +9,8 @@ import os
 # -------------------------
 # Constants (configuration)
 # -------------------------
-INPUT_FILE = "4HHB.cif"
-OUTPUT_FILE = "4HHB_summary.json"
+INPUT_FILE = "PATH/TO/FILE.cif"
+OUTPUT_FILE = "NameOfOutputFile.json"
 
 # -------------------------
 # Logging (configuration)
@@ -104,7 +104,7 @@ def parse_file(structure:'Bio.PDB.Structure.Structure')-> list[dict]:
     return summary 
 
 
-def generate_output_file(OUTPUT_FILE="Output.json": str, summary: list[dict]):
+def generate_output_file(OUTPUT_FILE="Output_Summary.json": str, summary: list[dict]):
     """
     Description.
 
