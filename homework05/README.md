@@ -57,5 +57,26 @@ python3 mmcif_summary.py -l INFO
 
 **Output**:
 ```
-
+[2026-02-13 02:28:10,125 mbs-337-2] mmcif_summary.py:main:139 - INFO: Beginning mmCIF Summary workflow
+[2026-02-13 02:28:10,319 mbs-337-2] mmcif_summary.py:open_input_file:52 - INFO: Successfully opened 4HHB.cif
+[2026-02-13 02:28:10,320 mbs-337-2] mmcif_summary.py:parse_file:75 - INFO: Beginning to parse file
+[2026-02-13 02:28:10,321 mbs-337-2] mmcif_summary.py:parse_file:103 - INFO: Finished parsing 4HHB.cif have 4 chains
+[2026-02-13 02:28:10,321 mbs-337-2] mmcif_summary.py:generate_output_file:122 - INFO: Writing to 4HHB_summary.json
+[2026-02-13 02:28:10,321 mbs-337-2] mmcif_summary.py:main:143 - INFO: mmCIF Summary workflow is complete!
 ```
+
+**Example Output File**:
+```
+$head output_files/4HHB_summary.json
+...
+{
+  "chains": [
+    {
+      "chain_id": "A",
+      "total_residues": 198,
+      "standard_residues": 141,
+      "hetero_residues": 57
+    },
+    {
+```
+
