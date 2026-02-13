@@ -100,7 +100,7 @@ def parse_file(structure:'Bio.PDB.Structure.Structure')-> list[dict]:
             new_entry["hetero_residues"] = hetero_count
             summary.append(new_entry)
     
-    logging.info(f"Finished parsing {INPUT_FILE} have {len(summary)} chains")
+    logging.info(f"Finished parsing {INPUT_FILE} has {len(summary)} chains")
     return summary 
 
 
