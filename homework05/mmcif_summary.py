@@ -104,7 +104,7 @@ def parse_file(structure:'Bio.PDB.Structure.Structure')-> list[dict]:
     return summary 
 
 
-def generate_output_file(OUTPUT_FILE: str, summary: list[dict]):
+def generate_output_file(OUTPUT_FILE="Output.json": str, summary: list[dict]):
     """
     Description.
 
