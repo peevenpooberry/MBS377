@@ -61,17 +61,23 @@ def read_file(input_file: str) -> list[dict]:
                     + length
     """
     sequences = []
-
-    with open(input_file, "r") as f:
-        for header, sequence in SimpleFastaParser(f):
-            #("Header", "Sequence")
-            parts = header.split("|")
-            entry = {
-                "id": parts[1],
-                "length": len(sequence)
-                }
-            sequences.append(entry)
-    return sequences
+    try:
+        logging.debug(f"About to read {input_file}")
+        with open(input_file, "r") as f:
+            logging.info(f"Parsing {input_file}")
+            for header, sequence in SimpleFastaParser(f):
+                #("Header", "Sequence")
+                parts = header.split("|")
+                entry = {
+                    "id": parts[1],
+                    "length": len(sequence)
+                    }
+                sequences.append(entry)
+            logging.info(f"Successfully parsed {len(sequence)} reads")
+        return sequences
+    except FileNotFoundError:
+        logging.error(f"Could not read {input_file}, terminating program.")
+        sys.exit(1)
 
 
 def make_summary(output_file: str, sequences: list)
@@ -85,7 +91,9 @@ def make_summary(output_file: str, sequences: list)
 
     Returns:
     """
+    logging.debug(f"About to write to {output_file}")
     with open(output_file, "w") as out:
+        logging.info(f"Writing stats in {output_file}")
         out.write(f"Num Sequences: {len(sequences)}\n")
 
         total_res = 0
@@ -96,11 +104,14 @@ def make_summary(output_file: str, sequences: list)
         sorted_seq = sorted(sequences, key=lambda x : x["length"], reverse=True)
         out.write(f"Longest Accession: {sorted_seq[0]["id"]} ({sorted_seq[0]["length"]} residues)\n")
         out.write(f"Shortest Accession: {sorted_seq[-1]["id"]} ({sorted_seq[-1]["length"]} residues)")
+        logging.info("Completed writing stats")
 
 
 def main():
+    logging.info("Beginning fasta_stats program")
     sequences = read_file(args.fastafile)
     make_summary(args.output, sequences)
+    logging.info("Successfully Completed Workflow!")
     
 
 if __name__ == "__main__":

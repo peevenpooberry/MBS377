@@ -13,17 +13,17 @@ gunzip 4HHB.cif.gz
 1) fasta_stats.py 
     + input: immune_proteins.fasta
     + ouput: immune_proteins_stats.txt
-    + add features: log levels, doc strings
+    + add features: log levels, try/except
 
 2) fasta_filter.py
     + input: immune_proteins.fasta
     + output: long_only.fasta
-    + add features: log levels, doc strings
+    + add features: log levels, try/except
 
 3) fastq_filter.py
     + input: sample1_rawReads.fastq
     + output: sample1_cleanReads.fastq
-    + add features: log levels, doc strings
+    + add features: log levels, try/except
 
 4) mmcif_summary.py
     + input: cif file

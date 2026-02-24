@@ -13,7 +13,7 @@ from Bio import SeqIO
 # global variables
 # -------------------------
 
-OUTPUT_FILE = "filtered_fastq_output.json"
+OUTPUT_FILE = "filtered_fastq_output.fastq"
 
 # -------------------------
 # arg parser for file names and logging setting
@@ -77,12 +77,20 @@ def load_fastq(input_file: str, encoding: str, threshold: int) -> list:
         reads_filter: The reads with average phred scores above the given threshold
     """
     reads_filter = []
-    with open(input_file, "r") as f
-        for record in SeqIO.parse(f, encoding):
-            avg_phred = sum(record.letter_annotations["phred_quality"]) / len(record.letter_annotations["phred_quality"])
-            if avg_phred >= threshold:
-                reads_filter.append(record)
-    return reads_filter
+    try:
+        logging.debug(f"About to read {input_file}")
+        with open(input_file, "r") as f
+            logging.info(f"Parsing {input_file} with {encoding} encoding")
+            for record in SeqIO.parse(f, encoding):
+                avg_phred = sum(record.letter_annotations["phred_quality"]) / len(record.letter_annotations["phred_quality"])
+                if avg_phred >= threshold:
+                    reads_filter.append(record)
+            logging.info(f"Sucessfully found {len(reads_filter)} sequences that 
+                            had a avg phred above {threshold}")
+        return reads_filter
+    except FileNotFoundError:
+        logging.error(f"Could not read {input_file}, terminating program.")
+        sys.exit(1)
     
 
 def create_filtered_file(output_file: str, reads_filter: list, encoding: str)
@@ -97,13 +105,23 @@ def create_filtered_file(output_file: str, reads_filter: list, encoding: str)
 
     Returns:
     """
-    with open(output_file, "w") as out:
-        SeqIO.write(reads_filter, out, encoding)
+    try:
+        logging.debug(f"About to write to {output_file}")
+        with open(output_file, "w") as out:\
+            logging.info(f"Writing to {output_file} with {encoding} encoding")
+            SeqIO.write(reads_filter, out, encoding)
+    except FileNotFoundError:
+        with open(OUTPUT_FILE, "w") as out:
+            logging.info(f"Could not write to {output_file}, 
+                            writing to {OUTPUT_FILE} with {encoding} encoding")
+            SeqIO.write(reads_filter, out, encoding)
 
 
 def main():
+    logging.info("Starting fastq_filter program")
     reads_filter = load_fastq(args.fastqfile, args.encoding, args.threshold)
     create_filtered_file(args.output, reads_filter, args.encoding)
+    logging.info("Successfully Completed Workflow!")
 
 if __name__ == "__main__":
     main()
