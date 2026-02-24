@@ -1,11 +1,12 @@
 # Homework 6 - *Docker Containers*
 
 ## Contents
-### `./InputFiles/`
-Where to place all of your input files to be processed by the following Python scripts
+### ./InputFiles/
+
+    Where to place all of your input files to be processed by the following Python scripts
 
 ### `./OutputFiles/`
-Where output files from the Python scripts will be deposited
++ Where output files from the Python scripts will be deposited
 
 ### `fasta_filter.py`
 + Input: FASTA File
@@ -35,7 +36,7 @@ Where output files from the Python scripts will be deposited
 | -o, --output | No | The path to the output json file | "output_fasta_summary.json" |
 | -l, --loglevel | No | The level of logging to get while the program runs | INFO |
 
-###  `fastq_filter.py`
+### `fastq_filter.py`
 + Input: FASTQ File
 + Output: FASTQ File
 
@@ -67,8 +68,8 @@ Where output files from the Python scripts will be deposited
 | -l, --loglevel | No | The level of logging to get while the program runs | INFO |
 
 
-## Example Process
-### 1. Get input files and put them within the `./InputFiles/` subdirectory
+## Example Files
+### 1. Get input files and put them within the `./InputFiles/` directory
 `immune_proteins.fasta`:
 ```
 wget https://github.com/TACC/mbs-337-sp26/raw/refs/heads/main/docs/unit03/sample-data/immune_proteins.fasta.gz
@@ -101,7 +102,7 @@ Example Code Using all inputs:
 docker run --rm \
 -v $PWD:/work \
 -u $(id -u):$(id -g) \
-<Dockerhub username>/<project name>:1.0 \
+peevenpooberry/homework06:1.0 \
 bash -c "
 fasta_stats.py -l INFO -f /work/InputFiles/immune_proteins.fasta -o /work/OutputFiles/immune_proteins_stats.txt &&
 fasta_filter.py -l INFO -f /work/InputFiles/immune_proteins.fasta -o /work/OutputFiles/long_only.fasta &&
