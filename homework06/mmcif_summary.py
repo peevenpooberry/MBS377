@@ -35,8 +35,8 @@ parser.add_argument(
 parser.add_argument(
     '-o', '--output',
     type=str,
-    default=OUTPUT_JSON,
-    help=f'The path to the output JSON file (default: {OUTPUT_JSON})'
+    default=OUTPUT_FILE,
+    help=f'The path to the output JSON file (default: {OUTPUT_FILE})'
 )
 args = parser.parse_args()
 
@@ -116,16 +116,16 @@ def parse_file(structure:'Bio.PDB.Structure.Structure')-> list[dict]:
             new_entry["hetero_residues"] = hetero_count
             summary.append(new_entry)
     
-    logging.info(f"Finished parsing {input_file} has {len(summary)} chains")
+    logging.info(f"Finished parsing with {len(summary)} chains")
     return summary 
 
 
-def generate_output_file(output_files": str, summary: list[dict]):
+def generate_output_file(output_file: str, summary: list[dict]):
     """
     Description.
 
     Args:
-        output_files: str, The name of the output json file.
+        output_file: str, The name of the output json file.
         summary: list[dict], a list of entries of chain summaries of dicts containing:
             "chain_id": str
             "total_residues": int
@@ -135,20 +135,14 @@ def generate_output_file(output_files": str, summary: list[dict]):
     Returns:
         result
     """
-    logging.info(f"Writing to {output_files}")
-    try:
-        full_path = os.path.join("output_files", output_files)
-    except:
-        logging.debug("Missing output directory")
-        full_path = output_files
-    finally:
-        wrapper = {"chains": summary}
-        with open(full_path, 'w') as outfile:
-            logging.debug(f"Loading to {output_files}")
-            try:
-                json.dump(wrapper, outfile, indent=2)
-            except Exception as e:
-                logging.error(f"Writing to {output_files} failed:\n{e}")
+    logging.info(f"Writing to {output_file}")
+    wrapper = {"chains": summary}
+    with open(output_file, 'w') as outfile:
+        logging.debug(f"Loading to {output_file}")
+        try:
+            json.dump(wrapper, outfile, indent=2)
+        except Exception as e:
+            logging.error(f"Writing to {output_file} failed:\n{e}")
 
 
 def main():

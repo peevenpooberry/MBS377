@@ -41,14 +41,14 @@ parser.add_argument(
 parser.add_argument(
     '-t', '--threshold',
     type=int,
-    default=30
+    default=30,
     help='The minimum average phred score for a sequence to be saved (default: 30)'
 )
 parser.add_argument(
     '-o', '--output',
     type=str,
-    default=OUTPUT_JSON,
-    help=f'The path to the output JSON file (default: {OUTPUT_JSON})'
+    default=OUTPUT_FILE,
+    help=f'The path to the output FASTQ file (default: {OUTPUT_FILE})'
 )
 args = parser.parse_args()
 
@@ -79,21 +79,23 @@ def load_fastq(input_file: str, encoding: str, threshold: int) -> list:
     reads_filter = []
     try:
         logging.debug(f"About to read {input_file}")
-        with open(input_file, "r") as f
+        with open(input_file, "r") as f:
             logging.info(f"Parsing {input_file} with {encoding} encoding")
             for record in SeqIO.parse(f, encoding):
                 avg_phred = sum(record.letter_annotations["phred_quality"]) / len(record.letter_annotations["phred_quality"])
                 if avg_phred >= threshold:
                     reads_filter.append(record)
-            logging.info(f"Sucessfully found {len(reads_filter)} sequences that 
-                            had a avg phred above {threshold}")
+            logging.info(
+                f"Sucessfully found {len(reads_filter)} sequences that " +
+                "had a avg phred above {threshold}"
+                )
         return reads_filter
     except FileNotFoundError:
         logging.error(f"Could not read {input_file}, terminating program.")
         sys.exit(1)
     
 
-def create_filtered_file(output_file: str, reads_filter: list, encoding: str)
+def create_filtered_file(output_file: str, reads_filter: list, encoding: str):
     """
     Creates a FASTQ file based on a list of FASTQ reads.
 
@@ -107,13 +109,15 @@ def create_filtered_file(output_file: str, reads_filter: list, encoding: str)
     """
     try:
         logging.debug(f"About to write to {output_file}")
-        with open(output_file, "w") as out:\
+        with open(output_file, "w") as out:
             logging.info(f"Writing to {output_file} with {encoding} encoding")
             SeqIO.write(reads_filter, out, encoding)
     except FileNotFoundError:
         with open(OUTPUT_FILE, "w") as out:
-            logging.info(f"Could not write to {output_file}, 
-                            writing to {OUTPUT_FILE} with {encoding} encoding")
+            logging.info(
+                f"Could not write to {output_file}, "
+                "writing to {OUTPUT_FILE} with {encoding} encoding"
+                )
             SeqIO.write(reads_filter, out, encoding)
 
 

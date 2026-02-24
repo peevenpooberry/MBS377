@@ -33,8 +33,8 @@ parser.add_argument(
 parser.add_argument(
     '-o', '--output',
     type=str,
-    default=OUTPUT_JSON,
-    help=f'The path to the output JSON file (default: {OUTPUT_JSON})'
+    default=OUTPUT_FILE,
+    help=f'The path to the output JSON file (default: {OUTPUT_FILE})'
 )
 args = parser.parse_args()
 
@@ -80,7 +80,7 @@ def read_file(input_file: str) -> list[dict]:
         sys.exit(1)
 
 
-def make_summary(output_file: str, sequences: list)
+def make_summary(output_file: str, sequences: list):
     """
     Creates a summary text file based on id and lengths contained in the list of dictionaries
     by sequence

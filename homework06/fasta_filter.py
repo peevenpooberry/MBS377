@@ -33,8 +33,8 @@ parser.add_argument(
 parser.add_argument(
     '-o', '--output',
     type=str,
-    default=OUTPUT_JSON,
-    help=f'The path to the output JSON file (default: {OUTPUT_JSON})'
+    default=OUTPUT_FILE,
+    help=f'The path to the output JSON file (default: {OUTPUT_FILE})'
 )
 args = parser.parse_args()
 
@@ -96,15 +96,18 @@ def write_output_fasta(output_file: str, sequences: list):
     try:
         logging.debug(f"About to write to {output_file}")
         with open(output_file, "w") as out:
-            loggin.info(f"Writing to {output_file}")
+            logging.info(f"Writing to {output_file}")
             written_count = 0
             for entry in sequences:
                 if entry["length"] > 1000:
                     out.write(f">{entry["header"]}\n")
                     out.write(f"{entry["sequence"]}\n")
                     written_count += 1
-            logging.info(f"Successfully written {written_count} sequences, 
-                            which have length > 1,000")
+            logging.info(
+                        f"Successfully written {written_count} sequences, " + 
+                        "which have length > 1,000"
+            )
+
     except FileNotFoundError:
         log.info(f"could not find path to {output_file}, writing to {OUTPUT_FILE}")
         with open(OUTPUT_FILE, "w") as out:
@@ -114,14 +117,16 @@ def write_output_fasta(output_file: str, sequences: list):
                     out.write(f">{entry["header"]}\n")
                     out.write(f"{entry["sequence"]}\n")
                     written_count += 1
-             logging.info(f"Successfully written {written_count} sequences, 
-                            which have length > 1,000")
+            logging.info(
+                f"Successfully written {written_count} sequences, " + 
+                "which have length > 1,000"
+                )
 
 
 def main():
     logging.debug("Beginning fasta_filter program")
     sequences = open_input_fasta(args.fastafile)
-    write_output(args.output, sequences)
+    write_output_fasta(args.output, sequences)
     logging.info("Successfully Completed Workflow!")
 
 

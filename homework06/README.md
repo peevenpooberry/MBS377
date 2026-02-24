@@ -13,12 +13,10 @@ gunzip 4HHB.cif.gz
 1) fasta_stats.py 
     + input: immune_proteins.fasta
     + ouput: immune_proteins_stats.txt
-    + add features: log levels, try/except
 
 2) fasta_filter.py
     + input: immune_proteins.fasta
     + output: long_only.fasta
-    + add features: log levels, try/except
 
 3) fastq_filter.py
     + input: sample1_rawReads.fastq
@@ -33,3 +31,16 @@ gunzip 4HHB.cif.gz
     + run each script and compare outputs
     + be able to run all commands together with `docker run` and proper `-u` and `-v` flags
     + push image to dockerhub and submit comments in `README.md` and push to github
+
+docker build -t peevenpooberry/homework06:1.0 .
+
+docker run --rm \
+-v $PWD:/work \
+-u $(id -u):$(id -g) \
+peevenpooberry/homework06:1.0 \
+bash -c "
+fasta_stats.py -l INFO -f /work/InputFiles/immune_proteins.fasta -o /work/OutputFiles/immune_proteins_stats.txt &&
+fasta_filter.py -l INFO -f /work/InputFiles/immune_proteins.fasta -o /work/OutputFiles/long_only.fasta &&
+fastq_filter.py -l INFO -f /work/InputFiles/sample1_rawReads.fastq -e fastq-sanger -t 30 -o /work/OutputFiles/sample1_cleanReads.fastq &&
+mmcif_summary.py -l INFO -f /work/InputFiles/4HHB.cif -o /work/OutputFiles/4HHB_summary.json
+"
