@@ -14,3 +14,4 @@ Every week I will be making a new directory with its own README and the individu
 + Week 3 Homework: Common Data Formats (json, xml, csv, yaml)
 + Week 4 Homework: Common Bio Data Formats (FASTA, FASTQ, mmCIF)
 + Week 5 Homework: Best Practices in Python (Code Organization, Documentation, Logging, Error Handling)
++ Week 6 Homework: Containerization with Docker
