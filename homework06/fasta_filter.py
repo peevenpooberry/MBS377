@@ -34,7 +34,7 @@ parser.add_argument(
     '-o', '--output',
     type=str,
     default=OUTPUT_FILE,
-    help=f'The path to the output JSON file (default: {OUTPUT_FILE})'
+    help=f'The path to the output FASTA file (default: {OUTPUT_FILE})'
 )
 args = parser.parse_args()
 
