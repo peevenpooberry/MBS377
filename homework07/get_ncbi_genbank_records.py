@@ -20,8 +20,9 @@ OUTPUT_FILE = "records.txt"
 # -------------------------
 # Logging setup
 # -------------------------
-parser = argparse.ArgumentParser(description='Sends API call to NCBI protein db and creates ' + 
-                                 'an output file with the top results')
+parser = argparse.ArgumentParser(
+  description='Sends API call to NCBI protein db and creates an output file with the top results'
+)
 parser.add_argument(
     '-l', '--loglevel',
     required=False,
@@ -38,10 +39,7 @@ parser.add_argument(
 parser.add_argument(
     '-s', '-search',
     default=SEARCH_TERM,
-    help=(
-        'The search terms the user wishes to get from the NCBI protein db API ' +
-        f'(default: {SEARCH_TERM})'
-    ),
+    help=f'The search terms the user wishes to request to the NCBI Protein DataBase (default: {SEARCH_TERM})',    
     type=str
 )
 
