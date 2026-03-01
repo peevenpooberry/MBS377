@@ -1,0 +1,11 @@
+---
+services:
+    reddis-db:
+      image: redis
+      container_name: redis
+      ports: 
+        - "6379:6379"
+      volumes:
+        - ./redis-data:/data
+      user: "1000:1000"
+      command: redis-server --appendonly yes --appendfsync everysec
