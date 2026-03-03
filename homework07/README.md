@@ -1,7 +1,7 @@
 # Homework 7: *Databases and APIs*
 
 ### Components of directory:
-+ docker-compose.yml: Made to run on Docker to use `Docker compose` to start up a Redis database container in the background
++ docker-compose.yml: Upon a `Docker compose -d` command Docker will start up a Redis database container in the background
 + get_nbci_genbank_records.py: A program file that will use the Redis database container to store results from API requests to the NCBI Protein database
 + ./ouput_files/: The directory where results saved to the Redis database will be shown via text files.
 
