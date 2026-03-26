@@ -2,3 +2,5 @@ env
 venv
 .venv
 redis-data
+.pytest_cache/
+__pycache__/
