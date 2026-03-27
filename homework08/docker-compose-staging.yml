@@ -1,6 +1,6 @@
 ---
 services:
-    redis-staging:
+    redis:
         image: redis:8
         volumes:
             - ./data:/data

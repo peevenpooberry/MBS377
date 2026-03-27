@@ -4,3 +4,4 @@ venv
 redis-data
 .pytest_cache/
 __pycache__/
+dump.rdb
