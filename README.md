@@ -16,3 +16,4 @@ Every week I will be making a new directory with its own README and the individu
 + Week 5 Homework: Best Practices in Python (Code Organization, Documentation, Logging, Error Handling)
 + Week 6 Homework: Containerization with Docker
 + Week 7 Homework: Databases and APIs
++ Week 9 Homework: DevOPs, CI, CD (Makefiles, Github actions, orchestrating containers)
