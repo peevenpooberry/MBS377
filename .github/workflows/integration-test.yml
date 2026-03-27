@@ -24,4 +24,4 @@ jobs:
       run: pytest
 
     - name: Stop images and clean up
-      run: docker compose -f /homework08/docker-compose.yml down
+      run: docker compose -f ./homework08/docker-compose.yml down
