@@ -10,7 +10,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Start containers
-      run: docker compose -f /home/ubuntu/mbs-337/hw/homework08/docker-compose.yml up --build -d
+      run: docker compose -f ./homework08/docker-compose.yml up --build -d
 
     - name: Set up Python
       uses: actions/setup-python@v4
