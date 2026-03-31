@@ -17,10 +17,10 @@ stop:
 all: stop run
 
 compose-down:
-	docker compose down
+	docker compose -f docker-compose.yml down
 
 compose-up:
-	docker compose up --build -d
+	docker compose -f docker-compose.yml up --build -d
 
 compose: compose-down compose-up
 
