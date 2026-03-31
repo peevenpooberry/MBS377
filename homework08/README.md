@@ -2,7 +2,7 @@
 
 In this homework I created I put together a previously created pdb-dashboard with a Makefile and docker containers orchestration to add staging before releasing changes to the main dashboard.
 
-# How to Run:
+## How to Run:
 1. Pull or clone the repository 
 2. Build the containers using 
 ```
